@@ -69,14 +69,8 @@ export class Server extends McpServer {
       'list_clusters',
       'list_clusters returns list of clusters registered with ArgoCD',
       {
-        server: z
-          .string()
-          .optional()
-          .describe('Filter clusters by server URL. Optional.'),
-        name: z
-          .string()
-          .optional()
-          .describe('Filter clusters by name. Optional.')
+        server: z.string().optional().describe('Filter clusters by server URL. Optional.'),
+        name: z.string().optional().describe('Filter clusters by name. Optional.')
       },
       async ({ server, name }) =>
         await this.argocdClient.listClusters({
