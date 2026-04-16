@@ -3,7 +3,7 @@
     "argocd-mcp": {
       "command": "npx",
       "args": [
-        "argocd-mcp@latest",
+        "@rokrokss/argocd-mcp@latest",
         "stdio"
       ],
       "env": {

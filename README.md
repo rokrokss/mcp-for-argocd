@@ -11,7 +11,7 @@ An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol
 const config = JSON.stringify({
   "name": "argocd-mcp",
   "command": "npx",
-  "args": ["argocd-mcp@latest", "stdio"],
+  "args": ["@rokrokss/argocd-mcp@latest", "stdio"],
   "env": {
     "ARGOCD_BASE_URL": "<argocd_url>",
     "ARGOCD_API_TOKEN": "<argocd_token>"
@@ -22,7 +22,7 @@ const urlForWebsites = `vscode:mcp/install?${encodeURIComponent(config)}`;
 const urlForGithub = `https://insiders.vscode.dev/redirect?url=${encodeURIComponent(urlForWebsites)}`;
 -->
 
-[<img src="https://img.shields.io/badge/VS_Code-VS_Code?style=flat-square&label=Install%20Server&color=0098FF" alt="Install in VS Code">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522argocd-mcp%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522argocd-mcp%2540latest%2522%252C%2522stdio%2522%255D%252C%2522env%2522%253A%257B%2522ARGOCD_BASE_URL%2522%253A%2522%253Cargocd_url%253E%2522%252C%2522ARGOCD_API_TOKEN%2522%253A%2522%253Cargocd_token%253E%2522%257D%257D)  [<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522argocd-mcp%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522argocd-mcp%2540latest%2522%252C%2522stdio%2522%255D%252C%2522env%2522%253A%257B%2522ARGOCD_BASE_URL%2522%253A%2522%253Cargocd_url%253E%2522%252C%2522ARGOCD_API_TOKEN%2522%253A%2522%253Cargocd_token%253E%2522%257D%257D)
+[<img src="https://img.shields.io/badge/VS_Code-VS_Code?style=flat-square&label=Install%20Server&color=0098FF" alt="Install in VS Code">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%7B%22name%22%3A%22argocd-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22%40rokrokss%2Fargocd-mcp%40latest%22%2C%22stdio%22%5D%2C%22env%22%3A%7B%22ARGOCD_BASE_URL%22%3A%22%3Cargocd_url%3E%22%2C%22ARGOCD_API_TOKEN%22%3A%22%3Cargocd_token%3E%22%7D%7D)  [<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Amcp%2Finstall%3F%7B%22name%22%3A%22argocd-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22%40rokrokss%2Fargocd-mcp%40latest%22%2C%22stdio%22%5D%2C%22env%22%3A%7B%22ARGOCD_BASE_URL%22%3A%22%3Cargocd_url%3E%22%2C%22ARGOCD_API_TOKEN%22%3A%22%3Cargocd_token%3E%22%7D%7D)
 
 ---
 ![argocd-mcp-demo](https://github.com/user-attachments/assets/091548d0-9927-4d4b-a2fe-4f99c7cea108)
@@ -73,7 +73,7 @@ The server provides the following ArgoCD management tools:
     "argocd-mcp": {
       "command": "npx",
       "args": [
-        "argocd-mcp@latest",
+        "@rokrokss/argocd-mcp@latest",
         "stdio"
       ],
       "env": {
@@ -97,7 +97,7 @@ The server provides the following ArgoCD management tools:
       "type": "stdio",
       "command": "npx",
       "args": [
-        "argocd-mcp@latest",
+        "@rokrokss/argocd-mcp@latest",
         "stdio"
       ],
       "env": {
@@ -120,7 +120,7 @@ The server provides the following ArgoCD management tools:
     "argocd-mcp": {
       "command": "npx",
       "args": [
-        "argocd-mcp@latest",
+        "@rokrokss/argocd-mcp@latest",
         "stdio"
       ],
       "env": {
