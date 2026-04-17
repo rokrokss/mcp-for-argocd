@@ -89,6 +89,27 @@ export class Server extends McpServer {
         await this.argocdClient.getApplication(applicationName, applicationNamespace)
     );
     this.addJsonOutputTool(
+      'refresh_application',
+      'refresh_application asks ArgoCD to re-fetch the latest manifests from the source repository and re-compare them against live cluster state, then returns the refreshed application. Call this BEFORE sync_application right after pushing new commits — otherwise sync may operate on a stale cached revision until the next polling cycle (~3min by default). Use "hard" refresh to also invalidate cached repository sources.',
+      {
+        applicationName: z.string(),
+        applicationNamespace: ApplicationNamespaceSchema.optional().describe(
+          'The namespace where the application is located. Required if application is not in the default namespace.'
+        ),
+        refresh: z
+          .enum(['normal', 'hard'])
+          .optional()
+          .describe(
+            'Refresh mode. "normal" re-fetches manifests from the source; "hard" additionally invalidates cached repository sources. Defaults to "normal".'
+          )
+      },
+      async ({ applicationName, applicationNamespace, refresh }) =>
+        await this.argocdClient.refreshApplication(applicationName, {
+          refresh: refresh ?? 'normal',
+          appNamespace: applicationNamespace
+        })
+    );
+    this.addJsonOutputTool(
       'get_application_resource_tree',
       'get_application_resource_tree returns resource tree for application by application name. Optionally specify the application namespace to get resource tree from applications in non-default namespaces.',
       {

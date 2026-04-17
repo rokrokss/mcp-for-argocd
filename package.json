@@ -1,6 +1,6 @@
 {
   "name": "@rokrokss/argocd-mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Argo CD MCP Server",
   "repository": {
     "type": "git",
