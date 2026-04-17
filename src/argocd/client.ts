@@ -88,6 +88,23 @@ export class ArgoCDClient {
     return body;
   }
 
+  public async refreshApplication(
+    applicationName: string,
+    options?: { refresh?: 'normal' | 'hard'; appNamespace?: string }
+  ) {
+    const queryParams: Record<string, string> = {
+      refresh: options?.refresh ?? 'normal'
+    };
+    if (options?.appNamespace) {
+      queryParams.appNamespace = options.appNamespace;
+    }
+    const { body } = await this.client.get<V1alpha1Application>(
+      `/api/v1/applications/${applicationName}`,
+      queryParams
+    );
+    return body;
+  }
+
   public async createApplication(application: V1alpha1Application) {
     const { body } = await this.client.post<V1alpha1Application, V1alpha1Application>(
       `/api/v1/applications`,
