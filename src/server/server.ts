@@ -283,7 +283,7 @@ export class Server extends McpServer {
       );
       this.addJsonOutputTool(
         'sync_application',
-        'sync_application syncs application. Specify applicationNamespace if the application is in a non-default namespace to avoid permission errors.',
+        'sync_application syncs an application. Supports selective resource-level sync by specifying the resources parameter (e.g., sync only a specific ConfigMap or Deployment). Specify applicationNamespace if the application is in a non-default namespace to avoid permission errors.',
         {
           applicationName: z.string(),
           applicationNamespace: ApplicationNamespaceSchema.optional().describe(
@@ -306,15 +306,38 @@ export class Server extends McpServer {
             .optional()
             .describe(
               'Additional sync options (e.g., ["CreateNamespace=true", "PrunePropagationPolicy=foreground"])'
+            ),
+          resources: z
+            .array(
+              z.object({
+                group: z
+                  .string()
+                  .describe('API group of the resource (empty string for core resources)'),
+                kind: z.string().describe('Kind of the resource (e.g., "ConfigMap", "Deployment")'),
+                name: z.string().describe('Name of the resource')
+              })
+            )
+            .optional()
+            .describe(
+              'Specific resources to sync. If omitted, all resources in the application are synced. Equivalent to argocd app sync --resource GROUP:KIND:NAME.'
             )
         },
-        async ({ applicationName, applicationNamespace, dryRun, prune, revision, syncOptions }) => {
-          const options: Record<string, string | boolean | string[]> = {};
+        async ({
+          applicationName,
+          applicationNamespace,
+          dryRun,
+          prune,
+          revision,
+          syncOptions,
+          resources
+        }) => {
+          const options: Record<string, unknown> = {};
           if (applicationNamespace) options.appNamespace = applicationNamespace;
           if (dryRun !== undefined) options.dryRun = dryRun;
           if (prune !== undefined) options.prune = prune;
           if (revision) options.revision = revision;
           if (syncOptions) options.syncOptions = syncOptions;
+          if (resources) options.resources = resources;
 
           return await this.argocdClient.syncApplication(
             applicationName,

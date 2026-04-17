@@ -141,9 +141,10 @@ export class ArgoCDClient {
       prune?: boolean;
       revision?: string;
       syncOptions?: string[];
+      resources?: { group: string; kind: string; name: string }[];
     }
   ) {
-    const syncRequest: Record<string, string | boolean | string[]> = {};
+    const syncRequest: Record<string, unknown> = {};
 
     if (options?.appNamespace) {
       syncRequest.appNamespace = options.appNamespace;
@@ -159,6 +160,9 @@ export class ArgoCDClient {
     }
     if (options?.syncOptions) {
       syncRequest.syncOptions = options.syncOptions;
+    }
+    if (options?.resources) {
+      syncRequest.resources = options.resources;
     }
 
     const { body } = await this.client.post<V1alpha1Application, V1alpha1Application>(
